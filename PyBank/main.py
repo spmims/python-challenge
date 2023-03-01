@@ -38,7 +38,13 @@ delta_2 = profit_loss_list.copy()
 delta_2.remove(delta_2[85])
     
 # Combine Lists     
-
+for first_value, second_value in zip(delta_1, delta_2):
+    monthly_change_list.append(first_value - second_value)
+    mean_change = round(sum(monthly_change_list) / len(monthly_change_list), 2)
+    highest_increase = max(monthly_change_list)
+    highest_decrease = min(monthly_change_list)
+    highest_increase_date = months_2[monthly_change_list.index(highest_increase)]
+    highest_decrease_date = months_2[monthly_change_list.index(highest_decrease)]
 
 # Print Results
 print("Financial Analysis")
