@@ -2,8 +2,17 @@
 import csv
 import os
 
-#candidate_names = []
-#all_candidates = []
-#percents =[]
-#data_table = []
-#total = 0
+# Create File Path
+csvpath = os.path.join("python-challenge", "PyPoll", "Resources", "election_data.csv")
+
+# Assigning variable, list, and dictionaries
+candidate_names = []
+votes = {}
+percent = {}
+total_votes = 0
+
+with open(csvpath) as voting_file:
+    csvreader = csv.reader(voting_file, delimiter = ",")
+    
+
+
