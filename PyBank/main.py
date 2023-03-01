@@ -3,7 +3,7 @@ import os
 import csv
 
 # Initiate File Path
-csvpath = os.path.join('python-challenge', 'PyBank', 'Resources', 'budget_data.csv')
+csvpath = os.path.join("python-challenge", "PyBank", "Resources", "budget_data.csv")
 
 # List Declaration    
 months = []
@@ -13,12 +13,13 @@ monthly_change_list = []
 
 # Open File Path
 with open(csvpath) as budget:
-    csvreader = csv.reader(budget, delimiter = ',')
+    csvreader = csv.reader(budget, delimiter = ",")
     
-# Get Header
+# Get Headers
     header = next(csvreader)
     print(f"CSV Header: {header}")
-    
+
+# Calculate Totals / Add To Lists    
     for row in csvreader:
         months.append(row[0])
         profit_loss_list.append(int(row[1]))
@@ -40,9 +41,15 @@ delta_2.remove(delta_2[85])
 # Combine Lists     
 for first_value, second_value in zip(delta_1, delta_2):
     monthly_change_list.append(first_value - second_value)
+    
+    # Find Average Change
     mean_change = round(sum(monthly_change_list) / len(monthly_change_list), 2)
+    
+    # Find Max and Min Changes
     highest_increase = max(monthly_change_list)
     highest_decrease = min(monthly_change_list)
+    
+    # Find Corresponding Dates
     highest_increase_date = months_2[monthly_change_list.index(highest_increase)]
     highest_decrease_date = months_2[monthly_change_list.index(highest_decrease)]
 
