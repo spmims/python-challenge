@@ -15,8 +15,6 @@ total_votes = 0
 with open(csvpath) as voting_file:
     csvreader = csv.reader(voting_file, delimiter = ",")
     
-    print(csvreader)
-    
 # Get Headers
     header = next(csvreader)
     print(f"CSV Header: {header}")
@@ -44,8 +42,28 @@ for name in candidate_list:
     
 output = "\n".join(f"{key}: {unit}" for key, unit in voting_counts.items())
 
-# Put Results into Format for Sending to File
-results = (f"Election Results\n" f"-------------------------\n" f"Total Votes: {total_votes}"
-           f"-------------------------\n" f"{output}\n" f"-------------------------\n"
-           f"Winner: {max(votes, key = votes.get)}\n" f"-------------------------\n")
+# Print Election Results
+print("Election Results")
+print("-------------------------")
+print(f"Total Votes: {total_votes}")
+print("-------------------------")
+print(f"{output}")
+print("-------------------------")
+print(f"Winner: {max(votes, key = votes.get)}")
+print("-------------------------")
 
+# Put Results into Format for Sending to File
+results = ["Election Results",
+           "-------------------------", 
+           f"Total Votes: {total_votes}",
+           f"-------------------------",
+           f"{output}", 
+           f"-------------------------",
+           f"Winner: {max(votes, key = votes.get)}",
+           f"-------------------------"]
+
+# Write our Results to a File
+with open("election_analysis.txt", "w") as f:
+    for results in results:
+        f.write(results)
+        f.write("\n")
