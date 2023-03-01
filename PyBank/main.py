@@ -60,3 +60,9 @@ results = ["Financial Analysis", "----------------------------",
            f"Total Months: {total_months}", f"Total: ${total}", 
            f"Average Change: ${mean_change}", f"Greatest Increase in Profits: {highest_increase_date} (${highest_increase})",
            f"Greatest Decrease in Profits: {highest_decrease_date} (${highest_decrease})"]
+
+# Create Text File With Results
+with open("financial_analysis.txt", "w") as f:
+    for results in results:
+        f.write(results)
+        f.write("\n")
